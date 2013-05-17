@@ -1,0 +1,157 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.etecture.opensource</groupId>
+		<artifactId>jee-logging</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>jee-logging-api</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>ejb</packaging>
+
+	<name>Java EE Logging API</name>
+
+	<properties>
+		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>6.0</version>
+			<scope>provided</scope>
+		</dependency>
+       <!--Test Dependencies-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.9</version>
+            <scope>test</scope>
+        </dependency>
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.0</version>
+					<dependencies>
+						<dependency><!-- add support for ssh/scp -->
+							<groupId>org.apache.maven.wagon</groupId>
+							<artifactId>wagon-ssh</artifactId>
+							<version>1.0</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<compilerArguments>
+						<endorseddirs>${endorsed.dir}</endorseddirs>
+					</compilerArguments>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ejb-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<ejbVersion>3.1</ejbVersion>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.1</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${endorsed.dir}</outputDirectory>
+							<silent>true</silent>
+							<artifactItems>
+								<artifactItem>
+									<groupId>javax</groupId>
+									<artifactId>javaee-endorsed-api</artifactId>
+									<version>6.0</version>
+									<type>jar</type>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-release-plugin</artifactId>
+			    <version>2.2.1</version>
+			    <executions>
+				<execution>
+				    <id>default</id>
+				    <goals>
+					<goal>perform</goal>
+				    </goals>
+				    <configuration>
+					<pomFileName>jee-logging-api/pom.xml</pomFileName>
+				    </configuration>
+				</execution>
+			    </executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<scm>
+		<connection>scm:git:https://github.com/etecture/jee-logging.git</connection>
+		<developerConnection>scm:git:https://github.com/etecture/jee-logging.git</developerConnection>
+        <url>https://github.com/etecture/jee-logging</url>
+	</scm>
+
+	<repositories>
+		<repository>
+			<id>etecture-releases</id>
+			<url>http://nexus.intern.etecture.de:8081/nexus/content/repositories/etecture-releases/</url>
+		</repository>
+		<repository>
+			<id>etecture-dev</id>
+			<url>http://nexus.intern.etecture.de:8081/nexus/content/repositories/etecture-snapshots/</url>
+		</repository>
+		<repository>
+			<id>maven2-repository.java.net</id>
+			<name>Java.net Repository for Maven</name>
+			<url>http://download.java.net/maven/2/</url>
+		</repository>
+	</repositories>
+	
+	<distributionManagement>
+		<repository>
+			<id>etecture-releases</id>
+			<url>http://nexus.intern.etecture.de:8081/nexus/content/repositories/etecture-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>etecture-snapshots</id>
+			<url>http://nexus.intern.etecture.de:8081/nexus/content/repositories/etecture-snapshots/</url>
+		</snapshotRepository>
+		<site>
+			<id>http://commons.maven.intern.etecture.de</id>
+			<url>scp://maven:maven@jenkins.intern.etecture.de/home/maven/commons/jee-logging-api</url>
+		</site>
+	</distributionManagement>
+
+</project>
+
