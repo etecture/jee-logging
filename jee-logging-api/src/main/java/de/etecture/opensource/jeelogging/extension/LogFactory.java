@@ -111,8 +111,8 @@ public class LogFactory {
 	@Inject
 	private Event<LogEvent> events;
 
-	@Produces
-	public Log createLog(InjectionPoint injectionPoint) {
+    @Produces
+    public Log createLog(InjectionPoint injectionPoint) {
 		final String source = injectionPoint.getMember().getDeclaringClass().getName();
 		return new AbstractLog() {
 			@Override

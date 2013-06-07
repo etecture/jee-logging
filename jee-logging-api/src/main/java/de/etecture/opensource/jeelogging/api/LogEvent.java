@@ -46,17 +46,19 @@ import java.util.Date;
  * @author rherschke
  */
 public interface LogEvent {
-	public static enum Severity {
-		INFO, WARN, ERROR, CONFIG, FINE, FINER, FINEST
-	}
 
-	String getMessage();
+    public static enum Severity {
 
-	Severity getSeverity();
+        ERROR, WARN, INFO, FINE, FINER, FINEST, CONFIG
+    }
 
-	String getSource();
+    String getMessage();
 
-	Throwable getCause();
+    Severity getSeverity();
 
-	Date getTimestamp();
+    String getSource();
+
+    Throwable getCause();
+
+    Date getTimestamp();
 }
