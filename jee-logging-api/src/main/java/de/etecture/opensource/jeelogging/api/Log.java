@@ -41,11 +41,13 @@ package de.etecture.opensource.jeelogging.api;
 
 import de.etecture.opensource.jeelogging.api.LogEvent.Severity;
 
+import java.io.Serializable;
+
 /**
  *
  * @author rhk
  */
-public interface Log {
+public interface Log extends Serializable {
 
 	void debug(String message, Object... arguments);
 
