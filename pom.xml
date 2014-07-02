@@ -128,22 +128,22 @@
 	<repositories>
 		<repository>
 			<id>etecture-releases</id>
-			<url>http://nexus.intern.etecture.de:8081/nexus/content/repositories/etecture-releases/</url>
+            <url>http://artifiactory.intern.etecture.de/artifactory/etecture-releases/</url>
 		</repository>
 		<repository>
-			<id>etecture-dev</id>
-			<url>http://nexus.intern.etecture.de:8081/nexus/content/repositories/etecture-snapshots/</url>
+			<id>etecture-snapshots</id>
+            <url>http://artifiactory.intern.etecture.de/artifactory/etecture-snapshots/</url>
 		</repository>
 	</repositories>
 	
 	<distributionManagement>
 		<repository>
 			<id>etecture-releases</id>
-			<url>http://nexus.intern.etecture.de:8081/nexus/content/repositories/etecture-releases/</url>
+            <url>http://artifiactory.intern.etecture.de/artifactory/etecture-releases/</url>
 		</repository>
 		<snapshotRepository>
 			<id>etecture-snapshots</id>
-			<url>http://nexus.intern.etecture.de:8081/nexus/content/repositories/etecture-snapshots/</url>
+            <url>http://artifiactory.intern.etecture.de/artifactory/etecture-snapshots/</url>
 		</snapshotRepository>
 		<site>
 			<id>http://commons.maven.intern.etecture.de</id>

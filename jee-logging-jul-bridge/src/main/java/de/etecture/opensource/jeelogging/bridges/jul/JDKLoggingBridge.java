@@ -87,7 +87,12 @@ public class JDKLoggingBridge implements LoggingBridgeManagement {
         try {
             objectName = new ObjectName("de.etecture.commons:type=" + this.getClass().getSimpleName());
             platformMBeanServer = ManagementFactory.getPlatformMBeanServer();
-            platformMBeanServer.registerMBean(this, objectName);
+            if (!platformMBeanServer.isRegistered(objectName)) {
+                platformMBeanServer.registerMBean(this, objectName);
+            } else {
+                logger.log(logger.getLevel(),
+                        "LoggingBridgeManagement already registered in JMX!");
+            }
         } catch (Exception e) {
             throw new IllegalStateException("Problem during registration of Monitoring into JMX:" + e);
         }
@@ -96,7 +101,8 @@ public class JDKLoggingBridge implements LoggingBridgeManagement {
     @PreDestroy
     public void unregisterFromJMX() {
         try {
-            if (platformMBeanServer != null) {
+            if (platformMBeanServer != null && platformMBeanServer.isRegistered(
+                    objectName)) {
                 platformMBeanServer.unregisterMBean(this.objectName);
             }
         } catch (Exception e) {

@@ -41,55 +41,55 @@ package de.etecture.opensource.jeelogging.extension;
 
 import de.etecture.opensource.jeelogging.api.Log;
 import de.etecture.opensource.jeelogging.api.LogEvent.Severity;
+import java.io.Serializable;
 
-/**
- *
- * @author rherschke
- */
-public abstract class AbstractLog implements Log {
 
-	@Override
-	public void log(Severity severity, String message, Object... arguments) {
-		log(severity, message, null, arguments);
-	}
+public abstract class AbstractLog implements Log, Serializable {
+
+    private static final long serialVersionUID = 1L;
 
 	@Override
-	public void info(String message, Object... arguments) {
-		info(message, null, arguments);
-	}
+    public void debug(String message, Object... arguments) {
+        debug(message, null, arguments);
+    }
 
 	@Override
-	public void info(String message, Throwable t, Object... arguments) {
-		log(Severity.INFO, message, t, arguments);
-	}
+    public void debug(String message, Throwable t, Object... arguments) {
+        log(Severity.FINE, message, t, arguments);
+    }
 
 	@Override
-	public void debug(String message, Object... arguments) {
-		debug(message, null, arguments);
-	}
+    public void error(String message, Object... arguments) {
+        error(message, null, arguments);
+    }
 
 	@Override
-	public void debug(String message, Throwable t, Object... arguments) {
-		log(Severity.FINE, message, t, arguments);
-	}
+    public void error(String message, Throwable t, Object... arguments) {
+        log(Severity.ERROR, message, t, arguments);
+    }
 
 	@Override
-	public void warn(String message, Object... arguments) {
-		warn(message, null, arguments);
-	}
+    public void info(String message, Object... arguments) {
+        info(message, null, arguments);
+    }
 
 	@Override
-	public void warn(String message, Throwable t, Object... arguments) {
-		log(Severity.WARN, message, t, arguments);
-	}
+    public void info(String message, Throwable t, Object... arguments) {
+        log(Severity.INFO, message, t, arguments);
+    }
 
 	@Override
-	public void error(String message, Object... arguments) {
-		error(message, null, arguments);
-	}
+    public void log(Severity severity, String message, Object... arguments) {
+        log(severity, message, null, arguments);
+    }
 
 	@Override
-	public void error(String message, Throwable t, Object... arguments) {
-		log(Severity.ERROR, message, t, arguments);
-	}
+    public void warn(String message, Object... arguments) {
+        warn(message, null, arguments);
+    }
+
+	@Override
+    public void warn(String message, Throwable t, Object... arguments) {
+        log(Severity.WARN, message, t, arguments);
+    }
 }

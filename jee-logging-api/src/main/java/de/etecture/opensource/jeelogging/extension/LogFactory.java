@@ -115,6 +115,7 @@ public class LogFactory {
     public Log createLog(InjectionPoint injectionPoint) {
 		final String source = injectionPoint.getMember().getDeclaringClass().getName();
 		return new AbstractLog() {
+            private static final long serialVersionUID = 1L;
 			@Override
 			public void log(Severity severity, String message, Throwable t, Object... arguments) {
 				LogFactory.this.log(source, severity, message, t, arguments);
@@ -124,11 +125,11 @@ public class LogFactory {
 
 	public void log(String source, Severity severity, String message, Throwable t, Object... arguments) {
 		LogEvent event = new SimpleLogEvent(source, severity, message, t, arguments);
-		if (t != null) {
+        if (t != null) {
 			events.select(
 					new WithSeverityBinding(event.getSeverity()),
 					new WithSourceBinding(event.getSource()),
-					new WithCauseBinding(event.getCause().getClass())).fire(event);
+                    new WithCauseBinding(t.getClass())).fire(event);
 		} else {
 			events.select(
 					new WithSeverityBinding(event.getSeverity()),
