@@ -123,22 +123,22 @@
 	<repositories>
 		<repository>
 			<id>etecture-releases</id>
-            <url>http://artifiactory.intern.etecture.de/artifactory/etecture-releases/</url>
+            <url>http://artifactory.intern.etecture.de/artifactory/etecture-release/</url>
 		</repository>
 		<repository>
 			<id>etecture-snapshots</id>
-            <url>http://artifiactory.intern.etecture.de/artifactory/etecture-snapshots/</url>
+            <url>http://artifactory.intern.etecture.de/artifactory/etecture-snapshots/</url>
 		</repository>
 	</repositories>
 	
 	<distributionManagement>
 		<repository>
 			<id>etecture-releases</id>
-            <url>http://artifiactory.intern.etecture.de/artifactory/etecture-releases/</url>
+            <url>http://artifactory.intern.etecture.de/artifactory/etecture-release/</url>
 		</repository>
 		<snapshotRepository>
 			<id>etecture-snapshots</id>
-            <url>http://artifiactory.intern.etecture.de/artifactory/etecture-snapshots/</url>
+            <url>http://artifactory.intern.etecture.de/artifactory/etecture-snapshots/</url>
 		</snapshotRepository>
 		<site>
 			<id>http://commons.maven.intern.etecture.de</id>
